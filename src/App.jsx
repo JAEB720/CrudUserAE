@@ -38,13 +38,28 @@ const App = () => {
     try {
       setLoading(true);
       const response = await axios.get('https://users-crud.academlo.tech/users/');
-      setUsers(response.data);
+      let userData = response.data;
+      if (userData.length === 0) {
+        console.warn('La API no devolvió ningún usuario. Agregando usuario predeterminado.');
+        // Aquí puedes elegir uno de los usuarios de la lista o definir uno nuevo según tus necesidades
+        userData = [{
+          id: 'default',
+          first_name: 'John',
+          last_name: 'Doe',
+          email: 'john.doe@example.com',
+          birthday: '1990-01-01',
+          gender: 'male',
+          image_url: 'https://example.com/default_avatar.png'
+        }];
+      }
+      setUsers(userData);
     } catch (error) {
       console.error('Error fetching users:', error);
     } finally {
       setLoading(false);
     }
   };
+  
 
   const handleDeleteUser = async (userId) => {
     try {
@@ -218,20 +233,29 @@ const App = () => {
       </Modal>
 
       <Grid columns={2} stackable>
-        {users.map((user, index) => (
-          <Grid.Column key={index} computer={8}>
-            <Segment textAlign="center" style={{ background: 'linear-gradient(rgba(5, 7, 12, 0.05), rgba(38, 98, 250, 0.3))', border:"none", padding:"2rem",}}> 
-              <Card.Group centered>
-                <UserCard
-                  user={user}
-                  onDelete={handleDeleteUser}
-                  onEdit={handleEditUser}
-                />
-              </Card.Group>
-            </Segment>
-          </Grid.Column>
-        ))}
-      </Grid>
+  {users.length > 0 ? (
+    users.map((user, index) => (
+      <Grid.Column key={index} computer={8}>
+        <Segment textAlign="center" style={{ background: 'linear-gradient(rgba(5, 7, 12, 0.05), rgba(38, 98, 250, 0.3))', border:"none", padding:"2rem",}}> 
+          <Card.Group centered>
+            <UserCard
+              user={user}
+              onDelete={handleDeleteUser}
+              onEdit={handleEditUser}
+            />
+          </Card.Group>
+        </Segment>
+      </Grid.Column>
+    ))
+  ) : (
+    <Grid.Column>
+      <Segment>
+        <Header>No users available</Header>
+        <p>Please add a new user.</p>
+      </Segment>
+    </Grid.Column>
+  )}
+</Grid>
 
       {/* modal de notificación */}
       <NotificationModal
