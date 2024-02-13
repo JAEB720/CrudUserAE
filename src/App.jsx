@@ -6,6 +6,7 @@ import UserCard from './UserCard';
 import NotificationModal from './NotificationModal';
 import Image3DViewer from './Image3DViewer';
 import Loader from './Loader';
+import './App.css';
 
 
 const App = () => {
