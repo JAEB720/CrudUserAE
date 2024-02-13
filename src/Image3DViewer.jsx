@@ -13,7 +13,7 @@ const Image3DViewer = () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     containerRef.current.appendChild(renderer.domElement);
 
-    const texture = new THREE.TextureLoader().load('./public/azul blanco.jpg');
+    const texture = new THREE.TextureLoader().load('/public/azul blanco.jpg');
     const material = new THREE.MeshBasicMaterial({ map: texture });
     const geometry = new THREE.PlaneGeometry(14, 8, 15, 9);
 
