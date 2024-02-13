@@ -40,7 +40,7 @@ const App = () => {
       const response = await axios.get('https://users-crud.academlo.tech/users/');
       let userData = response.data;
       if (userData.length === 0) {
-        console.warn('La API no devolvió ningún usuario. Agregando usuario predeterminado.');
+        console.warn('La API no devolvió ningún usuario. Agregando usuario Ejemplo.');
         
         userData = [{
           id: 'default',
@@ -49,7 +49,7 @@ const App = () => {
           email: 'john.doe@example.com',
           birthday: '1990-01-01',
           gender: 'male',
-          image_url: 'https://example.com/default_avatar.png'
+          image_url: 'https://react.semantic-ui.com/images/wireframe/image.png'
         }];
       }
       setUsers(userData);
@@ -74,7 +74,7 @@ const App = () => {
     try {
       await axios.delete(`https://users-crud.academlo.tech/users/${deletingUserId}`);
       fetchUsers();
-      // Mostrar notificación
+      
       showNotification('User deleted successfully.');
     } catch (error) {
       console.error('Error deleting user:', error);
