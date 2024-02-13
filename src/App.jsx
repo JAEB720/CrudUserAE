@@ -41,7 +41,7 @@ const App = () => {
       let userData = response.data;
       if (userData.length === 0) {
         console.warn('La API no devolvió ningún usuario. Agregando usuario predeterminado.');
-        // Aquí puedes elegir uno de los usuarios de la lista o definir uno nuevo según tus necesidades
+        
         userData = [{
           id: 'default',
           first_name: 'John',
