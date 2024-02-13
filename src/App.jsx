@@ -248,6 +248,7 @@ const App = () => {
         onConfirm={confirmDeleteUser}
       />
     </Container>
+    <p className='Author'>🦊 Hecho por <a href="https://github.com/JAEB720" target='_blank'>JAEB720</a></p>
      </>
   );
 };
