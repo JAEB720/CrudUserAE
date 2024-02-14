@@ -280,14 +280,3 @@ const App = () => {
 export default App;
 
 
-Variables
-they_like_each_other = True
-they_dont_like_each_other = False
-
-alejandro_and_mabel = they_like_each_other
-
-if alejandro_and_mabel == like_each_other:
-    print("Is love and happiness!")
-else:
-    print("It's sadness.")
-
